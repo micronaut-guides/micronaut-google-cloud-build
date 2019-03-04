@@ -8,7 +8,7 @@ plugins {
     id 'com.google.cloud.tools.jib' version '1.0.0-rc2'
 }
 
-version "0.16"
+version projectVersion
 group "example.grails"
 
 repositories {
@@ -36,6 +36,7 @@ dependencies {
     compile "io.micronaut:micronaut-runtime"
     compile "io.micronaut:micronaut-http-client"
     compile "io.micronaut:micronaut-http-server-netty"
+    runtime "io.micronaut:micronaut-management"
     runtime "ch.qos.logback:logback-classic:1.2.3"
     testAnnotationProcessor "io.micronaut:micronaut-inject-java"
     testCompile "org.junit.jupiter:junit-jupiter-api"
@@ -51,7 +52,7 @@ run.classpath += configurations.developmentOnly
 test.classpath += configurations.developmentOnly
 run.jvmArgs('-noverify', '-XX:TieredStopAtLevel=1')
 
-mainClassName = "example.grails.Application"
+mainClassName = "example.micronaut.Application"
 // use JUnit 5 platform
 test {
     useJUnitPlatform()
@@ -62,3 +63,10 @@ tasks.withType(JavaCompile){
 }
 
 apply from: rootProject.file('gradle/testVerbose.gradle')
+
+
+task generateBuildInfo(type: example.micronaut.GenerateBuildInfoTask) {
+    inputFile = file("${project.projectDir}/gradle.properties")
+    outputFile = file("${project.buildDir}/classes/java/main/META-INF/build-info.properties")
+}
+classes.dependsOn 'generateBuildInfo'

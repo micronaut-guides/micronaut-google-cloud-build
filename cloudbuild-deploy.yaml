@@ -6,6 +6,6 @@ steps:
   - name: 'gcr.io/cloud-builders/gradle'
     args: [':micronaut-guide:jibDockerBuild']
   - name: 'gcr.io/cloud-builders/docker'
-    args: ['tag', 'micronaut-guide:$TAG_NAME', 'gcr.io/$PROJECT_ID/micronaut-guide:$TAG_NAME']
+    args: ['tag', '${_IMAGE_NAME}:$TAG_NAME', 'gcr.io/$PROJECT_ID/${_IMAGE_NAME}:$TAG_NAME']
   - name: 'gcr.io/cloud-builders/docker'
-    args: ['push', 'gcr.io/$PROJECT_ID/micronaut-guide:$TAG_NAME']
+    args: ['push', 'gcr.io/$PROJECT_ID/${_IMAGE_NAME}:$TAG_NAME']

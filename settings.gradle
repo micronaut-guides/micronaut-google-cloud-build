@@ -1,4 +1,2 @@
-include 'complete'
-
 include 'micronaut-guide'
 project(":micronaut-guide").projectDir    = file('complete')

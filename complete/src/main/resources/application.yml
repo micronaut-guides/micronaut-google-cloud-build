@@ -5,3 +5,9 @@ micronaut:
         port: 8080
         cors:
             enabled: true
+endpoints:
+    info:
+        enabled: true
+        sensitive: false
+    health:
+        enabled: true
