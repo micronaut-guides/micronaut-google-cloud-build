@@ -1,5 +1,9 @@
 steps:
-  - name: 'Build'
+  - name: 'java:8'
     entrypoint: 'bash'
     args: ['-c',
            './gradlew build']
+  - name: 'java:8'
+      entrypoint: 'bash'
+      args: ['-c',
+             './gradlew jibDockerBuild']
