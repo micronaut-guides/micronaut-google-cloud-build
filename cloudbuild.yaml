@@ -7,3 +7,7 @@ steps:
     env: ['GRADLE_USER_HOME=cache']
     entrypoint: 'bash'
     args: ['-c', './gradlew jibDockerBuild']
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['-c', 'tag', 'micronaut-guide:0.1', 'gcr.io/micronaut-guide-sandbox/micronaut-guide:0.1']
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['-c', 'push', 'gcr.io/micronaut-guide-sandbox/micronaut-guide:0.1']
