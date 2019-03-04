@@ -7,8 +7,6 @@ plugins {
     id "net.ltgt.apt-idea" version "0.20"
 }
 
-
-
 version "0.1"
 group "example.grails"
 
@@ -61,3 +59,5 @@ tasks.withType(JavaCompile){
     options.encoding = "UTF-8"
     options.compilerArgs.add('-parameters')
 }
+
+apply from: rootProject.file('gradle/testVerbose.gradle')
