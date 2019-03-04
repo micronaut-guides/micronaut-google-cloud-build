@@ -1,4 +1,5 @@
 steps:
-  - name: 'java:8'
+  - name: 'Build'
     entrypoint: 'bash'
-    args: ['-c', './gradlew build']
+    args: ['-c',
+           './gradlew build']
