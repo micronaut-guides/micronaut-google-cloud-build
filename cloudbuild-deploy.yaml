@@ -1,0 +1,13 @@
+steps:
+  - name: 'java:8'
+    env: ['GRADLE_USER_HOME=cache']
+    entrypoint: 'bash'
+    args: ['-c', './gradlew build']
+  - name: 'java:8'
+    env: ['GRADLE_USER_HOME=cache']
+    entrypoint: 'bash'
+    args: ['-c', './gradlew jibDockerBuild']
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['-c', 'tag', 'micronaut-guide:0.1', 'gcr.io/$PROJECT_ID/micronaut-guide:$TAG_NAME']
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['-c', 'push', 'gcr.io/$PROJECT_ID/micronaut-guide:$TAG_NAME']
